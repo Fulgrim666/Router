@@ -1,5 +1,5 @@
 import NavBar from "./components/navBar";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Dashboard from "./components/dashboard";
 import Login from "./components/login";
 // import Posts from "./components/Posts";
@@ -16,24 +16,27 @@ const posts = [
 
 function App() {
   return (
-    <div>
-      <NavBar />
-      <h1>App</h1>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="dashboard/stats" exact component={Stats} />
-        <Route path="dashboard" exact component={Dashboard} />
-        <Route path="login" exact component={Login} />
-        <Route
-          path="posts/:postId"
-          render={(props) => <Post post={posts} {...props} />}
-        />
-        <Route
-          path="/posts"
-          render={(props) => <PostList post={posts} {...props} />}
-        />
-      </Switch>
-    </div>
+    <Router>
+      <div>
+        <NavBar />
+        <h1>App</h1>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/dashboard/stats" exact component={Stats} />
+
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/login" exact component={Login} />
+          <Route
+            path="/posts/:postId"
+            render={(props) => <Post post={posts} {...props} />}
+          />
+          <Route
+            path="/posts"
+            render={(props) => <PostList post={posts} {...props} />}
+          />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
